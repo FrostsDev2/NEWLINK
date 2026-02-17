@@ -7,6 +7,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
+<!-- Adcash Library (ONLY ONCE, HIGH IN HEAD) -->
+<script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+
 <style>
 * {
     margin: 0;
@@ -27,14 +30,12 @@ body {
     color: white;
 }
 
-/* Animated Gradient */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Snow Canvas */
 canvas {
     position: fixed;
     top: 0;
@@ -42,7 +43,6 @@ canvas {
     z-index: 0;
 }
 
-/* Glass Panel */
 .container {
     position: relative;
     z-index: 2;
@@ -68,7 +68,6 @@ h1 {
     text-shadow: 0 0 15px rgba(0,200,255,0.6);
 }
 
-/* Links */
 .links a {
     display: block;
     margin: 20px 0;
@@ -88,18 +87,12 @@ h1 {
     box-shadow: 0 0 20px rgba(0,200,255,0.7);
 }
 
-.soon {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
 .footer {
     margin-top: 30px;
     font-weight: 300;
     opacity: 0.8;
 }
 
-/* Side Ads */
 .ad-left, .ad-right {
     position: fixed;
     top: 50%;
@@ -124,36 +117,40 @@ h1 {
 
 <!-- Left Banner -->
 <div class="ad-left">
-<script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-<div>
-<script type="text/javascript">
-aclib.runBanner({
-    zoneId: '10982310',
-});
-</script>
-</div>
+    <div>
+        <script type="text/javascript">
+            aclib.runBanner({
+                zoneId: '10982310',
+            });
+        </script>
+    </div>
 </div>
 
 <!-- Right Banner -->
 <div class="ad-right">
-<script type="text/javascript">
-aclib.runBanner({
-    zoneId: '10982310',
-});
-</script>
+    <div>
+        <script type="text/javascript">
+            aclib.runBanner({
+                zoneId: '10982310',
+            });
+        </script>
+    </div>
 </div>
 
 <div class="container">
     <h1>New Links For "Frosts Inc" are available:</h1>
 
     <div class="links">
-        <a href="https://mathformonkeys.xyz" target="_blank">
-            Link 1: mathformonkeys.xyz
+
+        <!-- FIRST LINK (NEW) -->
+        <a href="https://savetheturtles.xyz" target="_blank">
+            Link 1: savetheturtles.xyz
         </a>
 
-        <a href="#" class="soon">
-            Link 2: savetheturtles.xyz (SOON)
+        <a href="https://mathformonkeys.xyz" target="_blank">
+            Link 2: mathformonkeys.xyz
         </a>
+
     </div>
 
     <div class="footer">
@@ -162,7 +159,6 @@ aclib.runBanner({
 </div>
 
 <script>
-// Multi-layer Snow for depth
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 
