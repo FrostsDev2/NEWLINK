@@ -19,15 +19,10 @@
             background-color: #030104;
             position: relative;
             color: #fff;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        body.loaded {
             opacity: 1;
         }
 
-        /* Cool loading animation */
+        /* Minimal fast loading - just a simple fade */
         .loader-wrapper {
             position: fixed;
             top: 0;
@@ -39,7 +34,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 1s ease, visibility 1s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .loader-wrapper.fade-out {
@@ -47,69 +42,21 @@
             visibility: hidden;
         }
 
-        .loader {
-            position: relative;
-            width: 150px;
-            height: 150px;
-        }
-
-        .loader span {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform: rotate(calc(18deg * var(--i)));
-        }
-
-        .loader span::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 15px;
-            height: 15px;
-            background: #a020f0;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #a020f0,
-                        0 0 20px #a020f0,
-                        0 0 40px #a020f0;
-            animation: animateLoader 2s linear infinite;
-            animation-delay: calc(0.1s * var(--i));
-        }
-
-        @keyframes animateLoader {
-            0% {
-                transform: scale(1);
-            }
-            80%, 100% {
-                transform: scale(0);
-            }
-        }
-
-        .loader-text {
-            position: absolute;
+        .minimal-loader {
             color: #a020f0;
-            font-weight: 800;
             font-size: 24px;
+            font-weight: 800;
             letter-spacing: 4px;
             text-transform: uppercase;
-            animation: pulseText 2s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(160, 32, 240, 0.5);
+            animation: minimalPulse 0.8s ease-in-out infinite;
         }
 
-        @keyframes pulseText {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(1.1);
-            }
+        @keyframes minimalPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
-        /* Background image with fade effect */
+        /* Background image with fade effect - now using IMG_5032.jpeg */
         body::before {
             content: '';
             position: fixed;
@@ -123,16 +70,6 @@
             background-repeat: no-repeat;
             opacity: 0.12;
             z-index: -1;
-            animation: slowZoom 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes slowZoom {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.1);
-            }
         }
 
         /* Purple glow effect */
@@ -149,12 +86,8 @@
         }
 
         @keyframes glowPulse {
-            0%, 100% {
-                opacity: 0.8;
-            }
-            50% {
-                opacity: 1;
-            }
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
         .container {
@@ -167,27 +100,14 @@
 
         /* Floating animation for elements */
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes floatReverse {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -195,14 +115,14 @@
             }
         }
 
-        /* Navigation */
+        /* Faster animations */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
+            padding: 25px 0;
             border-bottom: 1px solid rgba(160, 32, 240, 0.15);
-            animation: fadeInUp 1s ease-out;
+            animation: fadeInUp 0.4s ease-out;
         }
 
         .logo {
@@ -214,7 +134,6 @@
             background-clip: text;
             letter-spacing: 3px;
             position: relative;
-            animation: float 6s ease-in-out infinite;
         }
 
         .logo::after {
@@ -229,14 +148,8 @@
         }
 
         @keyframes slideLine {
-            0%, 100% {
-                transform: scaleX(0.3);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scaleX(1);
-                opacity: 1;
-            }
+            0%, 100% { transform: scaleX(0.3); opacity: 0.3; }
+            50% { transform: scaleX(1); opacity: 1; }
         }
 
         .nav-links {
@@ -248,7 +161,7 @@
             color: #d4b8ff;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             font-size: 16px;
             position: relative;
             padding: 5px 0;
@@ -263,7 +176,7 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, #a855f7, transparent);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .nav-links a:hover::before {
@@ -285,29 +198,19 @@
             align-items: center;
             gap: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(160, 32, 240, 0.6);
-            }
+            transition: all 0.2s ease;
         }
 
         .discord-btn:hover {
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(160, 32, 240, 0.5);
-            animation: none;
         }
 
         /* Hero Section */
         .hero {
-            padding: 100px 0 70px;
+            padding: 80px 0 50px;
             text-align: center;
-            animation: fadeInUp 1s ease-out 0.3s both;
+            animation: fadeInUp 0.4s ease-out 0.1s both;
         }
 
         .hero h1 {
@@ -319,16 +222,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 300% 300%;
-            animation: gradientShift 8s ease-in-out infinite, float 6s ease-in-out infinite;
+            animation: gradientShift 8s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .hero .tagline {
@@ -338,13 +237,12 @@
             margin: 0 auto;
             line-height: 1.6;
             text-shadow: 0 0 20px rgba(160, 32, 240, 0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
-        /* Game Icons */
+        /* Games Section with Status */
         .games-section {
-            padding: 50px 0;
-            animation: fadeInUp 1s ease-out 0.9s both;
+            padding: 40px 0;
+            animation: fadeInUp 0.4s ease-out 0.2s both;
         }
 
         .games-grid {
@@ -359,90 +257,94 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(160, 32, 240, 0.2);
             border-radius: 30px;
-            padding: 40px 50px;
+            padding: 35px 45px;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            animation: floatReverse 7s ease-in-out infinite;
-        }
-
-        .game-card:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-
-        .game-card:nth-child(3) {
-            animation-delay: 1s;
-        }
-
-        .game-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(160, 32, 240, 0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            transform: rotate(45deg);
-        }
-
-        .game-card:hover::before {
-            opacity: 1;
+            min-width: 200px;
         }
 
         .game-card:hover {
-            transform: translateY(-15px) scale(1.05);
+            transform: translateY(-5px);
             border-color: #a855f7;
-            box-shadow: 0 30px 50px rgba(160, 32, 240, 0.4);
+            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.3);
             background: rgba(30, 10, 45, 0.6);
         }
 
-        .game-icon {
-            font-size: 56px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 15px rgba(160, 32, 240, 0.5));
-            animation: spin 10s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .game-card:hover .game-icon {
-            animation: spin 3s linear infinite;
-        }
-
         .game-card h3 {
-            font-size: 28px;
+            font-size: 32px;
             color: #f0abfc;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 800;
         }
 
-        .game-card p {
+        .status-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-dot.purple { 
+            background: #a020f0; 
+            box-shadow: 0 0 15px #a020f0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .status-dot.yellow { 
+            background: #f5b042; 
+            box-shadow: 0 0 15px #f5b042;
+        }
+        
+        .status-dot.red { 
+            background: #f54242; 
+            box-shadow: 0 0 15px #f54242;
+        }
+
+        .status-label {
             color: #b7a4d4;
-            font-size: 15px;
-            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .status-value {
+            color: #fff;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .roblox-status .status-value { color: #f5b042; }
+        .fortnite-status .status-value { color: #f54242; }
+        .cs2-status .status-value { color: #f54242; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
         /* Features */
         .features {
-            padding: 80px 0;
-            animation: fadeInUp 1s ease-out 1.2s both;
+            padding: 60px 0;
+            animation: fadeInUp 0.4s ease-out 0.3s both;
         }
 
         .section-title {
             text-align: center;
             font-size: 48px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             color: #e9d5ff;
             text-shadow: 0 0 20px rgba(160, 32, 240, 0.5);
             position: relative;
@@ -451,44 +353,11 @@
             transform: translateX(-50%);
         }
 
-        .section-title::before,
-        .section-title::after {
-            content: '✦';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #a855f7;
-            font-size: 24px;
-            opacity: 0;
-            animation: starGlow 2s ease-in-out infinite;
-        }
-
-        .section-title::before {
-            left: -40px;
-            animation-delay: 0s;
-        }
-
-        .section-title::after {
-            right: -40px;
-            animation-delay: 1s;
-        }
-
-        @keyframes starGlow {
-            0%, 100% {
-                opacity: 0.3;
-                transform: translateY(-50%) scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(-50%) scale(1.3);
-            }
-        }
-
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .feature-item {
@@ -498,30 +367,13 @@
             border-radius: 20px;
             padding: 35px 25px;
             text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-item::after {
-            content: '';
-            position: absolute;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(transparent, rgba(160, 32, 240, 0.1));
-            transition: bottom 0.4s ease;
-        }
-
-        .feature-item:hover::after {
-            bottom: 0;
+            transition: all 0.3s ease;
         }
 
         .feature-item:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-5px);
             border-color: #a855f7;
-            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.3);
+            box-shadow: 0 15px 30px rgba(160, 32, 240, 0.2);
             background: rgba(30, 10, 45, 0.5);
         }
 
@@ -529,84 +381,82 @@
             font-size: 42px;
             margin-bottom: 20px;
             filter: drop-shadow(0 0 10px #a855f7);
-            animation: bounce 3s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        .feature-item:nth-child(2) .feature-icon {
-            animation-delay: 0.5s;
-        }
-
-        .feature-item:nth-child(3) .feature-icon {
-            animation-delay: 1s;
-        }
-
-        .feature-item:nth-child(4) .feature-icon {
-            animation-delay: 1.5s;
         }
 
         .feature-item h4 {
             font-size: 22px;
             color: #d8b4fe;
             margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
         }
 
         .feature-item p {
             color: #b7a4d4;
             font-size: 15px;
             line-height: 1.6;
-            position: relative;
-            z-index: 1;
+        }
+
+        /* Legend Section */
+        .legend-section {
+            text-align: center;
+            margin: 30px 0 50px;
+            animation: fadeInUp 0.4s ease-out 0.35s both;
+        }
+
+        .legend-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: rgba(20, 5, 30, 0.3);
+            backdrop-filter: blur(8px);
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            display: inline-flex;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b7a4d4;
+            font-size: 14px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.purple { background: #a020f0; }
+        .legend-dot.yellow { background: #f5b042; }
+        .legend-dot.red { background: #f54242; }
+
+        .legend-text {
+            font-weight: 500;
+        }
+
+        .legend-text small {
+            color: #6b5b7c;
+            font-size: 12px;
+            margin-left: 5px;
         }
 
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 80px 0;
+            padding: 70px 0;
             border-top: 1px solid rgba(160, 32, 240, 0.15);
             border-bottom: 1px solid rgba(160, 32, 240, 0.15);
-            margin: 60px 0;
-            animation: fadeInUp 1s ease-out 1.5s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(160, 32, 240, 0.05), transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            margin: 50px 0;
+            animation: fadeInUp 0.4s ease-out 0.4s both;
         }
 
         .cta-section h2 {
             font-size: 56px;
             color: #e9d5ff;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
             text-shadow: 0 0 30px rgba(160, 32, 240, 0.5);
         }
 
@@ -614,8 +464,6 @@
             color: #b7a4d4;
             font-size: 20px;
             margin-bottom: 35px;
-            position: relative;
-            z-index: 1;
         }
 
         .discord-large {
@@ -629,110 +477,62 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.2s ease;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            z-index: 1;
-            animation: pulse 3s ease-in-out infinite;
         }
 
         .discord-large:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.5);
-            animation: none;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.4);
         }
 
-        /* Member count animation */
-        .member-count {
+        .free-badge {
             display: inline-block;
             background: rgba(160, 32, 240, 0.15);
-            padding: 8px 20px;
+            padding: 8px 25px;
             border-radius: 30px;
-            margin-top: 25px;
+            margin-top: 20px;
             font-size: 16px;
             color: #d8b4fe;
             border: 1px solid rgba(160, 32, 240, 0.3);
             backdrop-filter: blur(5px);
-            animation: countPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes countPulse {
-            0%, 100% {
-                border-color: rgba(160, 32, 240, 0.3);
-            }
-            50% {
-                border-color: rgba(160, 32, 240, 0.8);
-                box-shadow: 0 0 20px rgba(160, 32, 240, 0.3);
-            }
         }
 
         /* Footer */
         footer {
-            padding: 50px 0;
+            padding: 40px 0;
             text-align: center;
             color: #6b5b7c;
             border-top: 1px solid rgba(160, 32, 240, 0.15);
-            animation: fadeInUp 1s ease-out 1.8s both;
+            animation: fadeInUp 0.4s ease-out 0.45s both;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 40px;
-            margin: 25px 0;
+            margin: 20px 0;
         }
 
         .footer-links a {
             color: #b7a4d4;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: color 0.2s ease;
             position: relative;
-        }
-
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #a855f7, transparent);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .footer-links a:hover::after {
-            transform: scaleX(1);
         }
 
         .footer-links a:hover {
             color: #f0abfc;
-            text-shadow: 0 0 10px rgba(160, 32, 240, 0.5);
+        }
+
+        /* Support link specific */
+        .support-link {
+            cursor: pointer;
         }
 
         footer p {
             color: #6b5b7c;
             font-size: 14px;
-        }
-
-        /* Glitch effect on hover for logo */
-        .logo:hover {
-            animation: glitch 0.3s ease-in-out infinite;
-        }
-
-        @keyframes glitch {
-            0%, 100% {
-                transform: translate(0);
-            }
-            25% {
-                transform: translate(-2px, 1px);
-            }
-            50% {
-                transform: translate(2px, -1px);
-            }
-            75% {
-                transform: translate(-1px, -1px);
-            }
         }
 
         /* Responsive */
@@ -743,7 +543,7 @@
             
             nav {
                 flex-direction: column;
-                gap: 25px;
+                gap: 20px;
             }
             
             .nav-links {
@@ -753,7 +553,8 @@
             }
             
             .game-card {
-                padding: 30px 40px;
+                padding: 25px 35px;
+                width: 100%;
             }
             
             .section-title {
@@ -763,35 +564,20 @@
             .cta-section h2 {
                 font-size: 40px;
             }
+            
+            .legend-container {
+                flex-direction: column;
+                gap: 15px;
+                border-radius: 30px;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Animation -->
+    <!-- Minimal fast loading animation -->
     <div class="loader-wrapper" id="loader">
-        <div class="loader">
-            <span style="--i:1;"></span>
-            <span style="--i:2;"></span>
-            <span style="--i:3;"></span>
-            <span style="--i:4;"></span>
-            <span style="--i:5;"></span>
-            <span style="--i:6;"></span>
-            <span style="--i:7;"></span>
-            <span style="--i:8;"></span>
-            <span style="--i:9;"></span>
-            <span style="--i:10;"></span>
-            <span style="--i:11;"></span>
-            <span style="--i:12;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:15;"></span>
-            <span style="--i:16;"></span>
-            <span style="--i:17;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:19;"></span>
-            <span style="--i:20;"></span>
-        </div>
-        <div class="loader-text">NOVA</div>
+        <div class="minimal-loader">NOVA</div>
     </div>
 
     <div class="purple-glow"></div>
@@ -805,7 +591,7 @@
                 <a href="#">CHEATS</a>
                 <a href="#">STATUS</a>
                 <a href="#">FAQ</a>
-                <a href="#">SUPPORT</a>
+                <a href="https://discord.gg/pSyxuddN77" class="support-link" target="_blank">SUPPORT</a>
                 <a href="https://discord.gg/pSyxuddN77" class="discord-btn" target="_blank">
                     <span>⚡</span> DISCORD
                 </a>
@@ -818,23 +604,61 @@
             <p class="tagline">Free cheats for Roblox, Fortnite & CS2. Safe, reliable and always undetected. Join the family.</p>
         </section>
 
-        <!-- Games Grid -->
+        <!-- Games Grid with Status -->
         <section class="games-section">
             <div class="games-grid">
+                <!-- Roblox -->
                 <div class="game-card">
-                    <div class="game-icon">🎮</div>
                     <h3>ROBLOX</h3>
-                    <p>External & Internal</p>
+                    <div class="status-container">
+                        <div class="status-item roblox-status">
+                            <span class="status-dot yellow"></span>
+                            <span class="status-label">Status:</span>
+                            <span class="status-value">⚠️ Old Version</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Fortnite -->
                 <div class="game-card">
-                    <div class="game-icon">🔫</div>
                     <h3>FORTNITE</h3>
-                    <p>Aimbot + ESP</p>
+                    <div class="status-container">
+                        <div class="status-item fortnite-status">
+                            <span class="status-dot red"></span>
+                            <span class="status-label">Status:</span>
+                            <span class="status-value">🔴 Down</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- CS2 -->
                 <div class="game-card">
-                    <div class="game-icon">🎯</div>
                     <h3>CS2</h3>
-                    <p>External Cheats</p>
+                    <div class="status-container">
+                        <div class="status-item cs2-status">
+                            <span class="status-dot red"></span>
+                            <span class="status-label">Status:</span>
+                            <span class="status-value">🔴 Down</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Legend -->
+        <section class="legend-section">
+            <div class="legend-container">
+                <div class="legend-item">
+                    <span class="legend-dot purple"></span>
+                    <span class="legend-text">🟣 = Completely working!</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot yellow"></span>
+                    <span class="legend-text">🟡 = Working but on older version</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot red"></span>
+                    <span class="legend-text">🔴 = Down or updating</span>
                 </div>
             </div>
         </section>
@@ -869,11 +693,11 @@
         <!-- CTA Section -->
         <section class="cta-section">
             <h2>JOIN THE MOVEMENT</h2>
-            <p>12,345+ members already cheating safely with NOVA</p>
+            <p>Thousands of members already cheating safely with NOVA</p>
             <a href="https://discord.gg/pSyxuddN77" class="discord-large" target="_blank">
                 <span>⚡</span> JOIN DISCORD
             </a>
-            <div class="member-count">
+            <div class="free-badge">
                 ✦ free forever ✦
             </div>
         </section>
@@ -885,7 +709,8 @@
                 <a href="#">privacy</a>
                 <a href="#">status</a>
                 <a href="#">contact</a>
-                <a href="https://discord.gg/pSyxuddN77">discord</a>
+                <a href="https://discord.gg/pSyxuddN77" target="_blank">support</a>
+                <a href="https://discord.gg/pSyxuddN77" target="_blank">discord</a>
             </div>
             <p>© 2024 NOVA EXTERNALS — free cheats, forever.</p>
             <p style="margin-top: 15px; font-size: 13px;">safe • reliable • undetected</p>
@@ -893,12 +718,11 @@
     </div>
 
     <script>
-        // Loading animation
+        // Fast loading animation - only 300ms
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('loader').classList.add('fade-out');
-                document.body.classList.add('loaded');
-            }, 2000);
+            }, 300);
         });
 
         // Smooth scroll for anchor links
@@ -911,14 +735,13 @@
             });
         });
 
-        // Random member count animation
-        const memberCount = document.querySelector('.member-count');
-        if (memberCount) {
-            setInterval(() => {
-                const random = Math.floor(Math.random() * 500) + 12000;
-                memberCount.innerHTML = `✦ ${random.toLocaleString()}+ members ✦`;
-            }, 5000);
-        }
+        // Support link handling
+        document.querySelectorAll('.support-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Already has href to discord, but we can add tracking if needed
+                console.log('Support clicked - redirecting to Discord');
+            });
+        });
     </script>
 </body>
 </html>
