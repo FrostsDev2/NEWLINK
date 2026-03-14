@@ -3,20 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA Externals - Roblox, Fortnite & CS2 Cheats</title>
+    <title>NOVA Externals | Free Roblox, Fortnite & CS2 Cheats</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
         body {
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            background-color: #0a0a0f;
+            background-color: #030104;
             position: relative;
             color: #fff;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Cool loading animation */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #030104;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .loader-wrapper.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .loader span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(calc(18deg * var(--i)));
+        }
+
+        .loader span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            background: #a020f0;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #a020f0,
+                        0 0 20px #a020f0,
+                        0 0 40px #a020f0;
+            animation: animateLoader 2s linear infinite;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes animateLoader {
+            0% {
+                transform: scale(1);
+            }
+            80%, 100% {
+                transform: scale(0);
+            }
+        }
+
+        .loader-text {
+            position: absolute;
+            color: #a020f0;
+            font-weight: 800;
+            font-size: 24px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: pulseText 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(160, 32, 240, 0.5);
+        }
+
+        @keyframes pulseText {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
         }
 
         /* Background image with fade effect */
@@ -31,8 +121,18 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.15;
+            opacity: 0.12;
             z-index: -1;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
         }
 
         /* Purple glow effect */
@@ -42,17 +142,57 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(106, 13, 173, 0.2) 0%, rgba(10, 10, 15, 0.95) 80%);
+            background: radial-gradient(circle at 50% 50%, rgba(106, 13, 173, 0.25) 0%, rgba(3, 1, 4, 0.98) 80%);
             pointer-events: none;
             z-index: -1;
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
             position: relative;
             z-index: 1;
+        }
+
+        /* Floating animation for elements */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes floatReverse {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Navigation */
@@ -60,130 +200,288 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 0;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(160, 32, 240, 0.15);
+            animation: fadeInUp 1s ease-out;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a855f7, #d8b4fe);
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #c084fc, #f0abfc, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a855f7, transparent);
+            animation: slideLine 3s ease-in-out infinite;
+        }
+
+        @keyframes slideLine {
+            0%, 100% {
+                transform: scaleX(0.3);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
         }
 
         .nav-links a {
-            color: #d8b4fe;
+            color: #d4b8ff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a855f7, transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            transform: scaleX(1);
         }
 
         .nav-links a:hover {
-            color: #a855f7;
-            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+            color: #f0abfc;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.7);
         }
 
         .discord-btn {
-            background: linear-gradient(135deg, #5865F2, #7857d4);
-            padding: 10px 25px;
+            background: linear-gradient(135deg, #5865F2, #a020f0);
+            padding: 12px 28px;
             border-radius: 30px;
             color: white !important;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(160, 32, 240, 0.6);
+            }
         }
 
         .discord-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
-            color: white !important;
-            text-shadow: none !important;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(160, 32, 240, 0.5);
+            animation: none;
         }
 
         /* Hero Section */
         .hero {
-            padding: 80px 0 60px;
+            padding: 100px 0 70px;
             text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #c084fc, #f0abfc, #d8b4fe);
+            font-size: 80px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e9d5ff, #f0abfc, #c084fc, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease-in-out infinite, float 6s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .hero .tagline {
             font-size: 20px;
-            color: #cbd5e1;
+            color: #b7a4d4;
             max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
+            text-shadow: 0 0 20px rgba(160, 32, 240, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         /* Game Icons */
         .games-section {
-            padding: 40px 0;
+            padding: 50px 0;
+            animation: fadeInUp 1s ease-out 0.9s both;
         }
 
         .games-grid {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
         }
 
         .game-card {
-            background: rgba(20, 10, 30, 0.6);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 20px;
-            padding: 35px 45px;
+            background: rgba(20, 5, 30, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            border-radius: 30px;
+            padding: 40px 50px;
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: floatReverse 7s ease-in-out infinite;
+        }
+
+        .game-card:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .game-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(160, 32, 240, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transform: rotate(45deg);
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
         }
 
         .game-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.05);
             border-color: #a855f7;
-            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
-            background: rgba(30, 15, 45, 0.8);
+            box-shadow: 0 30px 50px rgba(160, 32, 240, 0.4);
+            background: rgba(30, 10, 45, 0.6);
         }
 
         .game-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 56px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(160, 32, 240, 0.5));
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .game-card:hover .game-icon {
+            animation: spin 3s linear infinite;
         }
 
         .game-card h3 {
-            font-size: 24px;
+            font-size: 28px;
             color: #f0abfc;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         .game-card p {
-            color: #94a3b8;
-            font-size: 14px;
+            color: #b7a4d4;
+            font-size: 15px;
+            letter-spacing: 0.5px;
         }
 
         /* Features */
         .features {
-            padding: 60px 0;
+            padding: 80px 0;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 60px;
+            color: #e9d5ff;
+            text-shadow: 0 0 20px rgba(160, 32, 240, 0.5);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a855f7;
+            font-size: 24px;
+            opacity: 0;
+            animation: starGlow 2s ease-in-out infinite;
+        }
+
+        .section-title::before {
+            left: -40px;
+            animation-delay: 0s;
+        }
+
+        .section-title::after {
+            right: -40px;
+            animation-delay: 1s;
+        }
+
+        @keyframes starGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.3);
+            }
         }
 
         .features-grid {
@@ -194,220 +492,308 @@
         }
 
         .feature-item {
-            background: rgba(20, 10, 30, 0.5);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            border-radius: 15px;
-            padding: 30px 20px;
+            background: rgba(20, 5, 30, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(160, 32, 240, 0.15);
+            border-radius: 20px;
+            padding: 35px 25px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::after {
+            content: '';
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(160, 32, 240, 0.1));
+            transition: bottom 0.4s ease;
+        }
+
+        .feature-item:hover::after {
+            bottom: 0;
         }
 
         .feature-item:hover {
+            transform: translateY(-10px) scale(1.02);
             border-color: #a855f7;
-            background: rgba(30, 15, 45, 0.7);
+            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.3);
+            background: rgba(30, 10, 45, 0.5);
         }
 
         .feature-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
+            font-size: 42px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px #a855f7);
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .feature-item:nth-child(2) .feature-icon {
+            animation-delay: 0.5s;
+        }
+
+        .feature-item:nth-child(3) .feature-icon {
+            animation-delay: 1s;
+        }
+
+        .feature-item:nth-child(4) .feature-icon {
+            animation-delay: 1.5s;
         }
 
         .feature-item h4 {
-            font-size: 20px;
+            font-size: 22px;
             color: #d8b4fe;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-item p {
-            color: #94a3b8;
+            color: #b7a4d4;
             font-size: 15px;
-            line-height: 1.5;
-        }
-
-        /* Pricing Preview */
-        .pricing-preview {
-            padding: 40px 0 80px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #e9d5ff;
-            text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-        }
-
-        .pricing-cards {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .price-card {
-            background: rgba(20, 10, 30, 0.6);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            width: 280px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .price-card:hover {
-            border-color: #a855f7;
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-        }
-
-        .price-card.popular {
-            border: 2px solid #a855f7;
-            background: rgba(40, 20, 60, 0.8);
-            transform: scale(1.05);
-        }
-
-        .price-card h4 {
-            font-size: 24px;
-            color: #f0abfc;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 36px;
-            font-weight: 800;
-            color: #c084fc;
-            margin-bottom: 20px;
-        }
-
-        .price span {
-            font-size: 16px;
-            color: #94a3b8;
-            font-weight: normal;
-        }
-
-        .price-card ul {
-            list-style: none;
-            margin: 25px 0;
-        }
-
-        .price-card li {
-            color: #cbd5e1;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
-        }
-
-        .price-card li:last-child {
-            border-bottom: none;
-        }
-
-        .price-btn {
-            background: linear-gradient(135deg, #9333ea, #a855f7);
-            border: none;
-            color: white;
-            padding: 12px 40px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .price-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 60px 0;
-            border-top: 1px solid rgba(168, 85, 247, 0.3);
-            border-bottom: 1px solid rgba(168, 85, 247, 0.3);
-            margin: 40px 0;
+            padding: 80px 0;
+            border-top: 1px solid rgba(160, 32, 240, 0.15);
+            border-bottom: 1px solid rgba(160, 32, 240, 0.15);
+            margin: 60px 0;
+            animation: fadeInUp 1s ease-out 1.5s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(160, 32, 240, 0.05), transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .cta-section h2 {
-            font-size: 42px;
+            font-size: 56px;
             color: #e9d5ff;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 30px rgba(160, 32, 240, 0.5);
         }
 
         .cta-section p {
-            color: #94a3b8;
-            font-size: 18px;
-            margin-bottom: 30px;
+            color: #b7a4d4;
+            font-size: 20px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 1;
         }
 
         .discord-large {
-            background: linear-gradient(135deg, #5865F2, #9333ea);
-            padding: 15px 50px;
+            background: linear-gradient(135deg, #5865F2, #a020f0);
+            padding: 18px 60px;
             border-radius: 50px;
             color: white;
             text-decoration: none;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 20px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 1;
+            animation: pulse 3s ease-in-out infinite;
         }
 
         .discord-large:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(88, 101, 242, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.5);
+            animation: none;
+        }
+
+        /* Member count animation */
+        .member-count {
+            display: inline-block;
+            background: rgba(160, 32, 240, 0.15);
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 25px;
+            font-size: 16px;
+            color: #d8b4fe;
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            backdrop-filter: blur(5px);
+            animation: countPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes countPulse {
+            0%, 100% {
+                border-color: rgba(160, 32, 240, 0.3);
+            }
+            50% {
+                border-color: rgba(160, 32, 240, 0.8);
+                box-shadow: 0 0 20px rgba(160, 32, 240, 0.3);
+            }
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
-            color: #64748b;
-            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            color: #6b5b7c;
+            border-top: 1px solid rgba(160, 32, 240, 0.15);
+            animation: fadeInUp 1s ease-out 1.8s both;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
+            gap: 40px;
+            margin: 25px 0;
         }
 
         .footer-links a {
-            color: #94a3b8;
+            color: #b7a4d4;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #a855f7, transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            transform: scaleX(1);
         }
 
         .footer-links a:hover {
-            color: #a855f7;
+            color: #f0abfc;
+            text-shadow: 0 0 10px rgba(160, 32, 240, 0.5);
+        }
+
+        footer p {
+            color: #6b5b7c;
+            font-size: 14px;
+        }
+
+        /* Glitch effect on hover for logo */
+        .logo:hover {
+            animation: glitch 0.3s ease-in-out infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            25% {
+                transform: translate(-2px, 1px);
+            }
+            50% {
+                transform: translate(2px, -1px);
+            }
+            75% {
+                transform: translate(-1px, -1px);
+            }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 42px;
+                font-size: 48px;
             }
             
             nav {
                 flex-direction: column;
-                gap: 20px;
+                gap: 25px;
             }
             
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 20px;
             }
             
             .game-card {
-                padding: 25px 35px;
+                padding: 30px 40px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .cta-section h2 {
+                font-size: 40px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader">
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+            <span style="--i:4;"></span>
+            <span style="--i:5;"></span>
+            <span style="--i:6;"></span>
+            <span style="--i:7;"></span>
+            <span style="--i:8;"></span>
+            <span style="--i:9;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:13;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:15;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:17;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+        </div>
+        <div class="loader-text">NOVA</div>
+    </div>
+
     <div class="purple-glow"></div>
     
     <div class="container">
@@ -415,13 +801,13 @@
         <nav>
             <div class="logo">NOVA EXTERNALS</div>
             <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Products</a>
-                <a href="#">Pricing</a>
-                <a href="#">Status</a>
+                <a href="#">HOME</a>
+                <a href="#">CHEATS</a>
+                <a href="#">STATUS</a>
                 <a href="#">FAQ</a>
+                <a href="#">SUPPORT</a>
                 <a href="https://discord.gg/pSyxuddN77" class="discord-btn" target="_blank">
-                    <span>📱</span> Discord
+                    <span>⚡</span> DISCORD
                 </a>
             </div>
         </nav>
@@ -429,7 +815,7 @@
         <!-- Hero Section -->
         <section class="hero">
             <h1>NOVA EXTERNALS</h1>
-            <p class="tagline">Premium cheats for Roblox, Fortnite & CS2. Free and cheap options available. Safe, reliable, and undetected.</p>
+            <p class="tagline">Free cheats for Roblox, Fortnite & CS2. Safe, reliable and always undetected. Join the family.</p>
         </section>
 
         <!-- Games Grid -->
@@ -455,17 +841,17 @@
 
         <!-- Features -->
         <section class="features">
-            <h2 class="section-title">Why Choose NOVA?</h2>
+            <h2 class="section-title">WHY NOVA?</h2>
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">🛡️</div>
-                    <h4>100% Undetected</h4>
+                    <h4>Undetected</h4>
                     <p>Advanced bypass methods keep you safe</p>
                 </div>
                 <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <h4>Free & Cheap</h4>
-                    <p>Options for every budget, including free</p>
+                    <div class="feature-icon">💀</div>
+                    <h4>Completely Free</h4>
+                    <p>No payments, no subscriptions, ever</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🔄</div>
@@ -474,75 +860,65 @@
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">💬</div>
-                    <h4>24/7 Support</h4>
-                    <p>Active Discord community</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Preview -->
-        <section class="pricing-preview">
-            <h2 class="section-title">Simple Pricing</h2>
-            <div class="pricing-cards">
-                <div class="price-card">
-                    <h4>Free</h4>
-                    <div class="price">$0<span>/month</span></div>
-                    <ul>
-                        <li>Basic Features</li>
-                        <li>Limited ESP</li>
-                        <li>Community Support</li>
-                        <li>HWID Spoofer</li>
-                    </ul>
-                    <button class="price-btn">Get Started</button>
-                </div>
-                <div class="price-card popular">
-                    <h4>Premium</h4>
-                    <div class="price">$14.99<span>/month</span></div>
-                    <ul>
-                        <li>All Features</li>
-                        <li>Advanced Aimbot</li>
-                        <li>Full ESP Suite</li>
-                        <li>Priority Support</li>
-                        <li>Early Access</li>
-                    </ul>
-                    <button class="price-btn">Go Premium</button>
-                </div>
-                <div class="price-card">
-                    <h4>Lifetime</h4>
-                    <div class="price">$89.99<span></span></div>
-                    <ul>
-                        <li>All Premium Features</li>
-                        <li>Lifetime Updates</li>
-                        <li>Private Cheats</li>
-                        <li>Custom Configs</li>
-                        <li>VIP Discord Role</li>
-                    </ul>
-                    <button class="price-btn">Buy Lifetime</button>
+                    <h4>24/7 Community</h4>
+                    <p>Active Discord with thousands of users</p>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
         <section class="cta-section">
-            <h2>Join Our Community</h2>
-            <p>Over 10,000 members already cheating safely with NOVA Externals</p>
+            <h2>JOIN THE MOVEMENT</h2>
+            <p>12,345+ members already cheating safely with NOVA</p>
             <a href="https://discord.gg/pSyxuddN77" class="discord-large" target="_blank">
-                <span>📱</span> Join Discord (12,345+ Members)
+                <span>⚡</span> JOIN DISCORD
             </a>
+            <div class="member-count">
+                ✦ free forever ✦
+            </div>
         </section>
 
         <!-- Footer -->
         <footer>
             <div class="footer-links">
-                <a href="#">Terms</a>
-                <a href="#">Privacy</a>
-                <a href="#">Refund Policy</a>
-                <a href="#">Contact</a>
-                <a href="https://discord.gg/pSyxuddN77">Discord</a>
+                <a href="#">terms</a>
+                <a href="#">privacy</a>
+                <a href="#">status</a>
+                <a href="#">contact</a>
+                <a href="https://discord.gg/pSyxuddN77">discord</a>
             </div>
-            <p>© 2024 NOVA Externals. All rights reserved.</p>
-            <p style="margin-top: 10px; font-size: 14px;">Safe • Reliable • Undetected</p>
+            <p>© 2024 NOVA EXTERNALS — free cheats, forever.</p>
+            <p style="margin-top: 15px; font-size: 13px;">safe • reliable • undetected</p>
         </footer>
     </div>
+
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('fade-out');
+                document.body.classList.add('loaded');
+            }, 2000);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Random member count animation
+        const memberCount = document.querySelector('.member-count');
+        if (memberCount) {
+            setInterval(() => {
+                const random = Math.floor(Math.random() * 500) + 12000;
+                memberCount.innerHTML = `✦ ${random.toLocaleString()}+ members ✦`;
+            }, 5000);
+        }
+    </script>
 </body>
 </html>
