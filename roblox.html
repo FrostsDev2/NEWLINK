@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>NOVA Externals | Cheat Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --purple-primary: #a020f0;
+            --purple-dark: #6b0f9e;
+            --purple-light: #c05aff;
+            --purple-glow: rgba(160, 32, 240, 0.5);
+            --yellow-status: #f5b042;
+            --red-status: #f54242;
+            --text-primary: #fff;
+            --text-secondary: #b7a4d4;
+            --bg-dark: #030104;
+            --card-bg: rgba(20, 5, 30, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: var(--bg-dark);
+            position: relative;
+            color: var(--text-primary);
+            opacity: 1;
+            line-height: 1.6;
+        }
+
+        /* Background image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('IMG_5032.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.12;
+            z-index: -1;
+        }
+
+        /* Purple glow effect */
+        .purple-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(106, 13, 173, 0.25) 0%, rgba(3, 1, 4, 0.98) 80%);
+            pointer-events: none;
+            z-index: -1;
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 30px;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(160, 32, 240, 0.15);
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 25px 0;
+            }
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #c084fc, #f0abfc, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 32px;
+                letter-spacing: 3px;
+            }
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                gap: 40px;
+            }
+        }
+
+        .nav-links a {
+            color: #d4b8ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links a {
+                font-size: 16px;
+            }
+        }
+
+        .nav-links a:hover {
+            color: #f0abfc;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.7);
+        }
+
+        .discord-btn {
+            background: linear-gradient(135deg, #5865F2, var(--purple-primary));
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white !important;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            .discord-btn {
+                padding: 12px 28px;
+                font-size: 16px;
+            }
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(160, 32, 240, 0.5);
+        }
+
+        /* Game Header */
+        .game-header {
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #e9d5ff, #f0abfc, #c084fc, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(160, 32, 240, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .game-title {
+                font-size: 72px;
+            }
+        }
+
+        .game-status {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .status-working {
+            background: rgba(76, 175, 80, 0.15);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .status-maintenance {
+            background: rgba(245, 66, 66, 0.15);
+            border: 1px solid var(--red-status);
+            color: var(--red-status);
+        }
+
+        /* Maintenance Page */
+        .maintenance-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .maintenance-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .maintenance-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--red-status);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(245, 66, 66, 0.3);
+        }
+
+        .maintenance-text {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .back-btn {
+            background: rgba(160, 32, 240, 0.15);
+            border: 1px solid var(--purple-primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: rgba(160, 32, 240, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(160, 32, 240, 0.3);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 20px 0 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-category {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            border-radius: 30px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-category:hover {
+            border-color: var(--purple-primary);
+            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.2);
+            background: rgba(30, 10, 45, 0.5);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(160, 32, 240, 0.2);
+        }
+
+        .category-icon {
+            font-size: 32px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #f0abfc;
+            letter-spacing: 1px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(160, 32, 240, 0.1);
+            transform: translateX(5px);
+            color: white;
+        }
+
+        .feature-item .check {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .feature-badge {
+            background: rgba(160, 32, 240, 0.2);
+            border: 1px solid var(--purple-primary);
+            border-radius: 5px;
+            padding: 2px 8px;
+            font-size: 11px;
+            color: #f0abfc;
+            margin-left: 8px;
+        }
+
+        .sub-features {
+            margin-left: 25px;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #8f79a9;
+        }
+
+        /* Target Parts Grid */
+        .target-parts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            grid-column: span 2;
+        }
+
+        .target-tag {
+            background: rgba(160, 32, 240, 0.1);
+            border: 1px solid rgba(160, 32, 240, 0.3);
+            border-radius: 15px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #d4b8ff;
+        }
+
+        /* Config System Highlight */
+        .config-highlight {
+            background: linear-gradient(135deg, rgba(160, 32, 240, 0.2), rgba(88, 101, 242, 0.2));
+            border: 2px solid var(--purple-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .config-highlight::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(160, 32, 240, 0.1), transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .share-badge {
+            background: linear-gradient(135deg, var(--purple-primary), #5865F2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+        /* Navigation between games */
+        .game-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .game-nav-item {
+            padding: 10px 25px;
+            border-radius: 30px;
+            background: var(--card-bg);
+            border: 1px solid rgba(160, 32, 240, 0.2);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .game-nav-item:hover {
+            border-color: var(--purple-primary);
+            background: rgba(160, 32, 240, 0.15);
+            color: white;
+        }
+
+        .game-nav-item.active {
+            background: var(--purple-primary);
+            color: white;
+            border-color: var(--purple-primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(160, 32, 240, 0.15);
+            margin: 40px 0;
+        }
+
+        .discord-large {
+            background: linear-gradient(135deg, #5865F2, var(--purple-primary));
+            padding: 14px 40px;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        @media (min-width: 768px) {
+            .discord-large {
+                padding: 18px 60px;
+                font-size: 20px;
+            }
+        }
+
+        .discord-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(160, 32, 240, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            color: #6b5b7c;
+            border-top: 1px solid rgba(160, 32, 240, 0.15);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: #f0abfc;
+        }
+
+        footer p {
+            color: #6b5b7c;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="purple-glow"></div>
+    
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo"><a href="index.html">NOVA EXTERNALS</a></div>
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="roblox.html" class="active">ROBLOX</a>
+                <a href="fortnite.html">FORTNITE</a>
+                <a href="cs2.html">CS2</a>
+                <a href="#">FAQ</a>
+                <a href="https://discord.gg/pSyxuddN77" class="support-link" target="_blank">SUPPORT</a>
+                <a href="https://discord.gg/pSyxuddN77" class="discord-btn" target="_blank">
+                    <span>⚡</span> DISCORD
+                </a>
+            </div>
+        </nav>
+
+        <!-- Game Navigation -->
+        <div class="game-nav">
+            <a href="roblox.html" class="game-nav-item active">ROBLOX</a>
+            <a href="fortnite.html" class="game-nav-item">FORTNITE</a>
+            <a href="cs2.html" class="game-nav-item">CS2</a>
+        </div>
+
+        <!-- Roblox Features Page -->
+        <div id="roblox">
+            <div class="game-header">
+                <h1 class="game-title">ROBLOX</h1>
+                <div class="game-status status-working">⚡ FULLY WORKING</div>
+            </div>
+
+            <div class="features-section">
+                <div class="features-grid">
+                    <!-- Aimbot Section -->
+                    <div class="feature-category">
+                        <div class="category-header">
+                            <span class="category-icon">🎯</span>
+                            <h2 class="category-title">AIMBOT</h2>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="check">✓</span> Smoothing <span class="feature-badge">adjustable</span></div>
+                            <div class="feature-item"><span class="check">✓</span> FOV <span class="feature-badge">customizable</span></div>
+                            <div class="feature-item"><span class="check">✓</span> FOV Size <span class="feature-badge">slider</span></div>
+                            <div class="feature-item"><span class="check">✓</span> FOV Fill <span class="feature-badge">toggle</span></div>
+                            <div class="feature-item"><span class="check">✓</span> Team Check</div>
+                            <div class="feature-item"><span class="check">✓</span> Wall Check</div>
+                            <div class="feature-item"><span class="check">✓</span> Custom Keybind</div>
+                            <div class="feature-item"><span class="check">✓</span> Color Lock <span class="feature-badge">changes on lock</span></div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <div style="color: #f0abfc; margin-bottom: 10px; font-size: 14px;">Target Parts:</div>
+                            <div class="target-parts">
+                                <span class="target-tag">Head</span>
+                                <span class="target-tag">HumanoidRootPart</span>
+                                <span class="target-tag">Upper Torso</span>
+                                <span class="target-tag">Lower Torso</span>
+                                <span class="target-tag">Left Hand</span>
+                                <span class="target-tag">Right Hand</span>
+                                <span class="target-tag">Left Foot</span>
+                                <span class="target-tag">Right Foot</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ESP Section -->
+                    <div class="feature-category">
+                        <div class="category-header">
+                            <span class="category-icon">👁️</span>
+                            <h2 class="category-title">ESP</h2>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="check">✓</span> Box ESP 
+                                <span class="feature-badge">2D</span>
+                                <span class="feature-badge">Corner</span>
+                                <span class="feature-badge">3D</span>
+                            </div>
+                            <div class="feature-item"><span class="check">✓</span> Tracers</div>
+                            <div class="feature-item"><span class="check">✓</span> Name Tag</div>
+                            <div class="feature-item"><span class="check">✓</span> Health Bar</div>
+                            <div class="feature-item"><span class="check">✓</span> Distance</div>
+                            <div class="feature-item"><span class="check">✓</span> Skeleton</div>
+                            <div class="feature-item"><span class="check">✓</span> Hitbox</div>
+                            <div class="feature-item"><span class="check">✓</span> Speed/Velocity</div>
+                        </div>
+                    </div>
+
+                    <!-- Misc Settings -->
+                    <div class="feature-category">
+                        <div class="category-header">
+                            <span class="category-icon">⚙️</span>
+                            <h2 class="category-title">MISC SETTINGS</h2>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="check">✓</span> Radar</div>
+                            <div class="feature-item"><span class="check">✓</span> Color Lock <span class="feature-badge">visual feedback</span></div>
+                            <div class="feature-item"><span class="check">✓</span> Stream Proof</div>
+                            <div class="feature-item"><span class="check">✓</span> Stream Proof Mode</div>
+                        </div>
+                    </div>
+
+                    <!-- Config System -->
+                    <div class="feature-category config-highlight">
+                        <div class="category-header">
+                            <span class="category-icon">💾</span>
+                            <h2 class="category-title">CONFIG SYSTEM</h2>
+                        </div>
+                        <div class="feature-list">
+                            <div class="feature-item"><span class="check">✓</span> Save Configs</div>
+                            <div class="feature-item"><span class="check">✓</span> Load Configs</div>
+                            <div class="feature-item"><span class="check">✓</span> Export/Import</div>
+                            <div class="feature-item"><span class="check">✓</span> Shareable Configs <span class="share-badge">NEW</span></div>
+                            <div class="feature-item"><span class="check">✓</span> Multiple Profiles</div>
+                            <div class="feature-item"><span class="check">✓</span> Auto-Load on Launch</div>
+                        </div>
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 15px;">
+                            <p style="color: #f0abfc; font-size: 14px;">✨ Share your perfect settings with friends or save multiple setups for different games/modes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 style="font-size: 32px; margin-bottom: 20px; color: #e9d5ff;">READY TO DOMINATE?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">Join thousands of players using NOVA Externals</p>
+            <a href="https://discord.gg/pSyxuddN77" class="discord-large" target="_blank">
+                <span>⚡</span> JOIN DISCORD
+            </a>
+            <div style="margin-top: 20px; color: #6b5b7c; font-size: 14px;">free forever • no payments • ever</div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="index.html">home</a>
+                <a href="roblox.html">roblox</a>
+                <a href="fortnite.html">fortnite</a>
+                <a href="cs2.html">cs2</a>
+                <a href="#">faq</a>
+                <a href="https://discord.gg/pSyxuddN77" target="_blank">support</a>
+                <a href="https://discord.gg/pSyxuddN77" target="_blank">discord</a>
+            </div>
+            <p>© 2024 NOVA EXTERNALS — free cheats, forever.</p>
+            <p style="margin-top: 10px; font-size: 12px;">safe • reliable • undetected</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple navigation
+        document.querySelectorAll('.game-nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If it's a real link, let it navigate normally
+                if (this.getAttribute('href') !== '#') return;
+                e.preventDefault();
+                
+                // Remove active class from all
+                document.querySelectorAll('.game-nav-item').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Hide all game sections
+                document.querySelectorAll('.game-section').forEach(s => s.style.display = 'none');
+                
+                // Show selected game
+                const gameId = this.textContent.toLowerCase().trim();
+                document.getElementById(gameId).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
