@@ -15,38 +15,54 @@
 }
 
 :root {
-    --cyan-primary: #00cfd1;
-    --cyan-dark: #008b8d;
-    --cyan-light: #4efcff;
-    --cyan-glow: rgba(0, 207, 209, 0.45);
-
-    --text-primary: #ffffff;
-    --text-secondary: #9bdde0;
-
-    --bg-dark: #020b0d;
-    --card-bg: rgba(5, 25, 30, 0.55);
+    --cyan: #00cfd1;
+    --cyan-soft: #4efcff;
+    --cyan-glow: rgba(0, 207, 209, 0.4);
+    --bg: #020b0d;
+    --card: rgba(6, 30, 35, 0.55);
+    --text: #ffffff;
+    --text-soft: #9bdde0;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    background: var(--bg-dark);
-    color: var(--text-primary);
-    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    animation: fadeIn 1s ease forwards;
 }
 
+/* BACKGROUND LOGO */
+.bg-logo {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22vw;
+    font-weight: 900;
+    letter-spacing: 15px;
+    color: rgba(0, 207, 209, 0.05);
+    filter: blur(1px);
+    user-select: none;
+    pointer-events: none;
+    z-index: -3;
+}
+
+/* GLOW */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(0,207,209,.25), rgba(2,11,13,.95));
-    z-index: -2;
+    background: radial-gradient(circle at center, rgba(0,207,209,.18), rgba(2,11,13,.96));
+    z-index: -4;
+    animation: pulse 10s ease-in-out infinite;
 }
 
 .container {
     max-width: 1400px;
     margin: auto;
-    padding: 0 20px;
+    padding: 0 22px;
 }
 
 /* NAV */
@@ -54,91 +70,105 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 0;
-    border-bottom: 1px solid rgba(0,207,209,.2);
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(0,207,209,.18);
 }
 
 .logo {
     font-size: 34px;
     font-weight: 900;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, var(--cyan-light), var(--cyan-primary));
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, var(--cyan-soft), var(--cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 28px;
 }
 
 .nav-links a {
-    color: var(--text-secondary);
+    color: var(--text-soft);
     text-decoration: none;
     font-weight: 600;
+    transition: 0.25s;
 }
 
 .nav-links a:hover {
-    color: var(--cyan-light);
+    color: var(--cyan-soft);
 }
 
 .discord-btn {
-    padding: 10px 22px;
+    padding: 10px 24px;
     border-radius: 30px;
-    background: linear-gradient(135deg, var(--cyan-primary), #5865F2);
+    background: linear-gradient(135deg, var(--cyan), #5865F2);
     color: #fff !important;
-    font-weight: 700;
+    font-weight: 800;
+    transition: 0.25s;
+}
+
+.discord-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--cyan-glow);
 }
 
 /* HEADER */
 .header {
     text-align: center;
-    padding: 80px 0 40px;
+    padding: 90px 0 50px;
 }
 
 .header h1 {
     font-size: 72px;
     font-weight: 900;
-    background: linear-gradient(135deg, #eaffff, var(--cyan-light), var(--cyan-primary));
+    background: linear-gradient(135deg, #eaffff, var(--cyan-soft), var(--cyan));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: slideDown 1s ease forwards;
 }
 
 .header p {
-    color: var(--text-secondary);
-    font-size: 18px;
+    color: var(--text-soft);
     margin-top: 15px;
 }
 
 .status {
+    margin-top: 22px;
     display: inline-block;
-    margin-top: 20px;
     padding: 8px 22px;
     border-radius: 25px;
-    border: 1px solid var(--cyan-primary);
-    color: var(--cyan-light);
+    border: 1px solid var(--cyan);
+    color: var(--cyan-soft);
 }
 
 /* FEATURES */
 .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
-    padding: 40px 0;
+    padding: 50px 0;
 }
 
 .card {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border-radius: 28px;
+    background: var(--card);
+    border-radius: 26px;
     padding: 30px;
     border: 1px solid rgba(0,207,209,.25);
+    backdrop-filter: blur(12px);
+    animation: slideUp 0.8s ease forwards;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 45px rgba(0,207,209,.2);
+    border-color: var(--cyan);
 }
 
 .card h2 {
-    color: var(--cyan-light);
-    margin-bottom: 20px;
-    font-size: 22px;
+    color: var(--cyan-soft);
+    margin-bottom: 18px;
 }
 
 .card ul {
@@ -149,45 +179,74 @@ nav {
 
 .card li {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: var(--text-soft);
 }
 
 .card li::before {
     content: "✓ ";
-    color: var(--cyan-primary);
+    color: var(--cyan);
     font-weight: 800;
 }
 
 /* CTA */
 .cta {
     text-align: center;
-    padding: 70px 0;
+    padding: 80px 0;
     border-top: 1px solid rgba(0,207,209,.2);
 }
 
 .cta a {
     display: inline-block;
     margin-top: 25px;
-    padding: 16px 55px;
+    padding: 16px 60px;
     border-radius: 50px;
-    background: linear-gradient(135deg, var(--cyan-primary), #5865F2);
-    color: white;
-    font-size: 18px;
-    font-weight: 800;
+    background: linear-gradient(135deg, var(--cyan), #5865F2);
+    color: #fff;
+    font-weight: 900;
     text-decoration: none;
+    transition: 0.25s;
+}
+
+.cta a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px var(--cyan-glow);
 }
 
 /* FOOTER */
 footer {
-    padding: 30px 0;
     text-align: center;
-    color: #5faeb0;
+    padding: 30px 0;
     font-size: 13px;
+    color: #5faeb0;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px) }
+    to { opacity: 1; transform: translateY(0) }
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 1 }
+    50% { opacity: 0.85 }
 }
 </style>
 </head>
 
 <body>
+
+<div class="bg-logo">HELIX</div>
+
 <div class="container">
 
 <nav>
@@ -207,76 +266,47 @@ footer {
 </section>
 
 <section class="features">
+    <div class="card">
+        <h2>🎯 Aimbot</h2>
+        <ul>
+            <li>Silent Aim & Triggerbot</li>
+            <li>Custom FOV & Prediction</li>
+            <li>Sticky Aim & Random Hitbox</li>
+        </ul>
+    </div>
 
-<div class="card">
-<h2>🎯 Aimbot</h2>
-<ul>
-<li>Silent Aim & Triggerbot</li>
-<li>Custom FOV (Fill, Radius, Color)</li>
-<li>Smoothing & Prediction</li>
-<li>Visible / Dead Check</li>
-<li>Sticky Aim & Randomized Hitbox</li>
-<li>Target Indicator</li>
-</ul>
-</div>
+    <div class="card">
+        <h2>👁️ ESP</h2>
+        <ul>
+            <li>Box, Skeleton, Head Circle</li>
+            <li>Names, Health, Distance</li>
+            <li>Tracers & View Cone</li>
+        </ul>
+    </div>
 
-<div class="card">
-<h2>👁️ ESP</h2>
-<ul>
-<li>Box ESP (2D / Corner)</li>
-<li>Skeleton & Head Circle</li>
-<li>Names, Distance, Health</li>
-<li>Tracers & View Cone</li>
-<li>Team Check & Max Distance</li>
-</ul>
-</div>
+    <div class="card">
+        <h2>🏃 Movement</h2>
+        <ul>
+            <li>Speed Hack & Fly</li>
+            <li>Noclip & Infinite Jump</li>
+            <li>Zoom & Jump Power</li>
+        </ul>
+    </div>
 
-<div class="card">
-<h2>🏃 Movement</h2>
-<ul>
-<li>Speed Hack (CFrame)</li>
-<li>Fly (CFrame / Position)</li>
-<li>Noclip & Infinite Jump</li>
-<li>Jump Power & Zoom</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>⚙️ Utilities</h2>
-<ul>
-<li>Anti-AFK</li>
-<li>Chat Logger & Spammer</li>
-<li>Custom Crosshair</li>
-<li>FPS Counter & Player Count</li>
-<li>Menu Keybind</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>🧠 Game-Specific</h2>
-<ul>
-<li>Project Delta Crate ESP (15 Types)</li>
-<li>AI ESP & Exit ESP</li>
-<li>Team Detection & Filtering</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>🧭 Explorer</h2>
-<ul>
-<li>Instance Tree Viewer</li>
-<li>Click-to-Navigate</li>
-<li>Class, Address, Parent Info</li>
-<li>Max Depth Control</li>
-</ul>
-</div>
-
+    <div class="card">
+        <h2>⚙️ Utilities</h2>
+        <ul>
+            <li>Anti-AFK & Chat Tools</li>
+            <li>Custom Crosshair</li>
+            <li>FPS Counter</li>
+        </ul>
+    </div>
 </section>
 
 <section class="cta">
-<h2>READY TO DOMINATE?</h2>
-<p>Free Roblox externals — no payments, ever.</p>
-<a href="https://discord.gg/pSyxuddN77" target="_blank">JOIN DISCORD</a>
+    <h2>READY TO DOMINATE?</h2>
+    <p>Free Roblox externals — no payments, ever.</p>
+    <a href="https://discord.gg/pSyxuddN77" target="_blank">JOIN DISCORD</a>
 </section>
 
 <footer>
