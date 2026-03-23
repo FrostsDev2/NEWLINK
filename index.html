@@ -8,238 +8,214 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--cyan:#00cfd1;
+--cyan-soft:#4efcff;
+--cyan-glow:rgba(0,207,209,.35);
+--bg:#020b0d;
+--card:rgba(6,30,35,.55);
+--text:#fff;
+--text-soft:#9bdde0;
 }
 
-:root {
-    --cyan: #00cfd1;
-    --cyan-soft: #4efcff;
-    --cyan-glow: rgba(0, 207, 209, 0.4);
-    --bg: #020b0d;
-    --card: rgba(6, 30, 35, 0.55);
-    --text: #ffffff;
-    --text-soft: #9bdde0;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    animation: fadeIn 1s ease forwards;
+body{
+font-family:Inter,sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+animation:fadeIn 1s ease;
 }
 
 /* BACKGROUND LOGO */
-.bg-logo {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22vw;
-    font-weight: 900;
-    letter-spacing: 15px;
-    color: rgba(0, 207, 209, 0.05);
-    filter: blur(1px);
-    user-select: none;
-    pointer-events: none;
-    z-index: -3;
+.bg-logo{
+position:fixed;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22vw;
+font-weight:900;
+letter-spacing:15px;
+color:rgba(0,207,209,.05);
+filter:blur(1px);
+pointer-events:none;
+z-index:-3;
 }
 
 /* GLOW */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(0,207,209,.18), rgba(2,11,13,.96));
-    z-index: -4;
-    animation: pulse 10s ease-in-out infinite;
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:radial-gradient(circle,rgba(0,207,209,.18),rgba(2,11,13,.96));
+z-index:-4;
+animation:pulse 10s ease-in-out infinite;
 }
 
-.container {
-    max-width: 1400px;
-    margin: auto;
-    padding: 0 22px;
+.container{
+max-width:1500px;
+margin:auto;
+padding:0 22px;
 }
 
 /* NAV */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 0;
-    border-bottom: 1px solid rgba(0,207,209,.18);
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 0;
+border-bottom:1px solid rgba(0,207,209,.18);
 }
 
-.logo {
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: 4px;
-    background: linear-gradient(135deg, var(--cyan-soft), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.logo{
+font-size:34px;
+font-weight:900;
+letter-spacing:4px;
+background:linear-gradient(135deg,var(--cyan-soft),var(--cyan));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.nav-links {
-    display: flex;
-    gap: 28px;
+.nav-links{
+display:flex;
+gap:28px;
 }
 
-.nav-links a {
-    color: var(--text-soft);
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.25s;
+.nav-links a{
+color:var(--text-soft);
+text-decoration:none;
+font-weight:600;
+transition:.25s;
 }
 
-.nav-links a:hover {
-    color: var(--cyan-soft);
+.nav-links a:hover{color:var(--cyan-soft)}
+
+.discord-btn{
+padding:10px 24px;
+border-radius:30px;
+background:linear-gradient(135deg,var(--cyan),#5865F2);
+color:#fff!important;
+font-weight:800;
+transition:.25s;
 }
 
-.discord-btn {
-    padding: 10px 24px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, var(--cyan), #5865F2);
-    color: #fff !important;
-    font-weight: 800;
-    transition: 0.25s;
-}
-
-.discord-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px var(--cyan-glow);
+.discord-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 30px var(--cyan-glow);
 }
 
 /* HEADER */
-.header {
-    text-align: center;
-    padding: 90px 0 50px;
+.header{
+text-align:center;
+padding:90px 0 50px;
 }
 
-.header h1 {
-    font-size: 72px;
-    font-weight: 900;
-    background: linear-gradient(135deg, #eaffff, var(--cyan-soft), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: slideDown 1s ease forwards;
+.header h1{
+font-size:72px;
+font-weight:900;
+background:linear-gradient(135deg,#eaffff,var(--cyan-soft),var(--cyan));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.header p {
-    color: var(--text-soft);
-    margin-top: 15px;
+.header p{
+color:var(--text-soft);
+margin-top:15px;
 }
 
-.status {
-    margin-top: 22px;
-    display: inline-block;
-    padding: 8px 22px;
-    border-radius: 25px;
-    border: 1px solid var(--cyan);
-    color: var(--cyan-soft);
+.status{
+margin-top:22px;
+display:inline-block;
+padding:8px 22px;
+border-radius:25px;
+border:1px solid var(--cyan);
+color:var(--cyan-soft);
 }
 
 /* FEATURES */
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    padding: 50px 0;
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+gap:30px;
+padding:60px 0;
 }
 
-.card {
-    background: var(--card);
-    border-radius: 26px;
-    padding: 30px;
-    border: 1px solid rgba(0,207,209,.25);
-    backdrop-filter: blur(12px);
-    animation: slideUp 0.8s ease forwards;
-    transition: 0.3s;
+.card{
+background:var(--card);
+border-radius:26px;
+padding:30px;
+border:1px solid rgba(0,207,209,.25);
+backdrop-filter:blur(12px);
+animation:slideUp .8s ease;
+transition:.3s;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 45px rgba(0,207,209,.2);
-    border-color: var(--cyan);
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 25px 45px rgba(0,207,209,.2);
+border-color:var(--cyan);
 }
 
-.card h2 {
-    color: var(--cyan-soft);
-    margin-bottom: 18px;
+.card h2{
+color:var(--cyan-soft);
+margin-bottom:18px;
 }
 
-.card ul {
-    list-style: none;
-    display: grid;
-    gap: 10px;
+.card ul{
+list-style:none;
+display:grid;
+gap:8px;
 }
 
-.card li {
-    font-size: 14px;
-    color: var(--text-soft);
+.card li{
+font-size:14px;
+color:var(--text-soft);
 }
 
-.card li::before {
-    content: "✓ ";
-    color: var(--cyan);
-    font-weight: 800;
+.card li::before{
+content:"✓ ";
+color:var(--cyan);
+font-weight:800;
 }
 
 /* CTA */
-.cta {
-    text-align: center;
-    padding: 80px 0;
-    border-top: 1px solid rgba(0,207,209,.2);
+.cta{
+text-align:center;
+padding:80px 0;
+border-top:1px solid rgba(0,207,209,.2);
 }
 
-.cta a {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 16px 60px;
-    border-radius: 50px;
-    background: linear-gradient(135deg, var(--cyan), #5865F2);
-    color: #fff;
-    font-weight: 900;
-    text-decoration: none;
-    transition: 0.25s;
+.cta a{
+display:inline-block;
+margin-top:25px;
+padding:16px 60px;
+border-radius:50px;
+background:linear-gradient(135deg,var(--cyan),#5865F2);
+color:#fff;
+font-weight:900;
+text-decoration:none;
+transition:.25s;
 }
 
-.cta a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 25px 50px var(--cyan-glow);
+.cta a:hover{
+transform:translateY(-3px);
+box-shadow:0 25px 50px var(--cyan-glow);
 }
 
 /* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px 0;
-    font-size: 13px;
-    color: #5faeb0;
+footer{
+text-align:center;
+padding:30px 0;
+font-size:13px;
+color:#5faeb0;
 }
 
 /* ANIMATIONS */
-@keyframes fadeIn {
-    from { opacity: 0 }
-    to { opacity: 1 }
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px) }
-    to { opacity: 1; transform: translateY(0) }
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-30px) }
-    to { opacity: 1; transform: translateY(0) }
-}
-
-@keyframes pulse {
-    0%,100% { opacity: 1 }
-    50% { opacity: 0.85 }
-}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.85}}
 </style>
 </head>
 
@@ -250,63 +226,161 @@ footer {
 <div class="container">
 
 <nav>
-    <div class="logo">HELIX</div>
-    <div class="nav-links">
-        <a href="#">HOME</a>
-        <a href="#">ROBLOX</a>
-        <a href="#">FAQ</a>
-        <a class="discord-btn" href="https://discord.gg/pSyxuddN77" target="_blank">DISCORD</a>
-    </div>
+<div class="logo">HELIX</div>
+<div class="nav-links">
+<a href="#">HOME</a>
+<a href="#">ROBLOX</a>
+<a href="#">FAQ</a>
+<a class="discord-btn" href="https://discord.gg/pSyxuddN77" target="_blank">DISCORD</a>
+</div>
 </nav>
 
 <section class="header">
-    <h1>HELIX EXTERNAL</h1>
-    <p>Advanced Roblox External — Precision. Control. Undetected.</p>
-    <div class="status">⚡ FULLY WORKING</div>
+<h1>HELIX EXTERNAL</h1>
+<p>Advanced Roblox External — Precision. Control. Undetected.</p>
+<div class="status">⚡ FULLY WORKING</div>
 </section>
 
 <section class="features">
-    <div class="card">
-        <h2>🎯 Aimbot</h2>
-        <ul>
-            <li>Silent Aim & Triggerbot</li>
-            <li>Custom FOV & Prediction</li>
-            <li>Sticky Aim & Random Hitbox</li>
-        </ul>
-    </div>
 
-    <div class="card">
-        <h2>👁️ ESP</h2>
-        <ul>
-            <li>Box, Skeleton, Head Circle</li>
-            <li>Names, Health, Distance</li>
-            <li>Tracers & View Cone</li>
-        </ul>
-    </div>
+<div class="card">
+<h2>🎯 Aimbot</h2>
+<ul>
+<li>Enable / Disable</li>
+<li>Silent Aim</li>
+<li>Triggerbot + Delay</li>
+<li>Custom FOV (Circle, Fill, Radius, Color)</li>
+<li>Smoothing & Prediction</li>
+<li>Target Selection (Head / Chest / Torso)</li>
+<li>Dead & Visible Check</li>
+<li>Randomized Hitbox</li>
+<li>Sticky Aim</li>
+<li>Target Indicator</li>
+</ul>
+</div>
 
-    <div class="card">
-        <h2>🏃 Movement</h2>
-        <ul>
-            <li>Speed Hack & Fly</li>
-            <li>Noclip & Infinite Jump</li>
-            <li>Zoom & Jump Power</li>
-        </ul>
-    </div>
+<div class="card">
+<h2>👁️ ESP</h2>
+<ul>
+<li>Box ESP (2D / Corner)</li>
+<li>Box Fill</li>
+<li>Name & Distance</li>
+<li>Health Bar & Text</li>
+<li>Skeleton / Bones</li>
+<li>Tracers</li>
+<li>Head Circle</li>
+<li>View Cone</li>
+<li>Team Check</li>
+<li>Max Distance Control</li>
+<li>Full Color Customization</li>
+</ul>
+</div>
 
-    <div class="card">
-        <h2>⚙️ Utilities</h2>
-        <ul>
-            <li>Anti-AFK & Chat Tools</li>
-            <li>Custom Crosshair</li>
-            <li>FPS Counter</li>
-        </ul>
-    </div>
+<div class="card">
+<h2>🎨 Visuals</h2>
+<ul>
+<li>Item ESP</li>
+<li>Fullbright</li>
+<li>Remove Sky</li>
+<li>Custom Skybox</li>
+<li>Mini Radar</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🏃 Movement</h2>
+<ul>
+<li>Speed Hack (WalkSpeed / CFrame)</li>
+<li>Fly (Speed / CFrame / Position)</li>
+<li>Noclip</li>
+<li>Infinite Jump</li>
+<li>Jump Power</li>
+<li>Zoom</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>⚙️ Settings</h2>
+<ul>
+<li>Anti-AFK</li>
+<li>Chat Logger</li>
+<li>Chat Spammer</li>
+<li>Custom Crosshair</li>
+<li>Hit Markers</li>
+<li>Theme Selection (8 Themes)</li>
+<li>Snow Animation</li>
+<li>FPS Counter</li>
+<li>Player Count Display</li>
+<li>Menu Keybind</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>👥 Players</h2>
+<ul>
+<li>Player List</li>
+<li>Health & Distance Display</li>
+<li>Mark Friend / Enemy</li>
+<li>Team Detection</li>
+<li>Teleport To Player</li>
+<li>Copy Username</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>ℹ️ Info</h2>
+<ul>
+<li>Game ID / Place ID</li>
+<li>Ping</li>
+<li>Username & User ID</li>
+<li>Health / WalkSpeed / JumpPower</li>
+<li>Player Count</li>
+<li>Team Info (Supported Games)</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🧠 Game‑Specific</h2>
+<ul>
+<li>Project Delta Crate ESP (15 Types)</li>
+<li>Item Search</li>
+<li>Exit ESP</li>
+<li>AI ESP (Box, Skeleton, Name, Distance, Health, Tracers)</li>
+<li>FOV Inventory</li>
+<li>CT / T Team Detection</li>
+<li>Team-Based ESP Filtering</li>
+<li>Team Player Count</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🧭 Explorer</h2>
+<ul>
+<li>Instance Tree View</li>
+<li>Max Depth Control</li>
+<li>Instance Details (Name, Class, Address)</li>
+<li>Parent / Children View</li>
+<li>Click-to-Navigate</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🧠 Core Systems</h2>
+<ul>
+<li>External (No Injection)</li>
+<li>Stream Proof</li>
+<li>Undetected</li>
+<li>High Performance</li>
+<li>Stable on All FPS Caps</li>
+</ul>
+</div>
+
 </section>
 
 <section class="cta">
-    <h2>READY TO DOMINATE?</h2>
-    <p>Free Roblox externals — no payments, ever.</p>
-    <a href="https://discord.gg/pSyxuddN77" target="_blank">JOIN DISCORD</a>
+<h2>READY TO DOMINATE?</h2>
+<p>Free Roblox externals — no payments, ever.</p>
+<a href="https://discord.gg/pSyxuddN77" target="_blank">JOIN DISCORD</a>
 </section>
 
 <footer>
