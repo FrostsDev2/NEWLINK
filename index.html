@@ -2,267 +2,243 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Helix External</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Helix External | Roblox Externals</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-:root{
---cyan:#00cfd1;
---cyan-soft:#4efcff;
---cyan-glow:rgba(0,207,209,.35);
---bg:#020b0d;
---card:rgba(6,30,35,.55);
---text:#fff;
---text-soft:#9bdde0;
+:root {
+  --cyan: #7ffcff;
+  --bg: #02060b;
+  --card: rgba(10,25,40,0.78);
+  --border: rgba(0,255,255,0.2);
 }
 
-body{
-font-family:Inter,sans-serif;
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-animation:fadeIn 1s ease;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #0a1c2b, var(--bg));
+  color: #eaffff;
+  overflow-x: hidden;
 }
 
 /* BACKGROUND LOGO */
-.bg-logo{
-position:fixed;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22vw;
-font-weight:900;
-letter-spacing:15px;
-color:rgba(0,207,209,.05);
-filter:blur(1px);
-pointer-events:none;
-z-index:-3;
-}
-
-/* GLOW */
-body::before{
-content:'';
-position:fixed;
-inset:0;
-background:radial-gradient(circle,rgba(0,207,209,.18),rgba(2,11,13,.96));
-z-index:-4;
-animation:pulse 10s ease-in-out infinite;
-}
-
-.container{
-max-width:1500px;
-margin:auto;
-padding:0 22px;
+.bg-logo {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 720px;
+  font-weight: 900;
+  color: rgba(0,255,255,0.035);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 /* NAV */
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:28px 0;
-border-bottom:1px solid rgba(0,207,209,.18);
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(2,6,11,0.8);
+  backdrop-filter: blur(12px);
+  padding: 14px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
 }
 
-.logo{
-font-size:34px;
-font-weight:900;
-letter-spacing:4px;
-background:linear-gradient(135deg,var(--cyan-soft),var(--cyan));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+nav h1 {
+  color: var(--cyan);
+  letter-spacing: 2px;
 }
 
-.nav-links{
-display:flex;
-gap:28px;
+nav a {
+  color: #eaffff;
+  text-decoration: none;
+  margin-left: 22px;
+  font-size: 14px;
+  opacity: 0.85;
+  transition: 0.2s;
 }
 
-.nav-links a{
-color:var(--text-soft);
-text-decoration:none;
-font-weight:600;
-transition:.25s;
+nav a:hover {
+  color: var(--cyan);
 }
 
-.nav-links a:hover{color:var(--cyan-soft)}
-
-.discord-btn{
-padding:10px 24px;
-border-radius:30px;
-background:linear-gradient(135deg,var(--cyan),#5865F2);
-color:#fff!important;
-font-weight:800;
-transition:.25s;
+/* HERO */
+header {
+  padding: 160px 10% 120px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
-.discord-btn:hover{
-transform:translateY(-2px);
-box-shadow:0 10px 30px var(--cyan-glow);
+header h2 {
+  font-size: 70px;
+  color: var(--cyan);
+  letter-spacing: 4px;
+  animation: fadeDown 1s ease forwards;
 }
 
-/* HEADER */
-.header{
-text-align:center;
-padding:90px 0 50px;
+header p {
+  margin-top: 20px;
+  font-size: 20px;
+  opacity: 0.85;
+  animation: fadeUp 1.2s ease forwards;
 }
 
-.header h1{
-font-size:72px;
-font-weight:900;
-background:linear-gradient(135deg,#eaffff,var(--cyan-soft),var(--cyan));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+header button {
+  margin-top: 40px;
+  padding: 14px 40px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: none;
+  background: var(--cyan);
+  color: #000;
+  cursor: pointer;
+  transition: 0.25s;
 }
 
-.header p{
-color:var(--text-soft);
-margin-top:15px;
+header button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(0,255,255,0.6);
 }
 
-.status{
-margin-top:22px;
-display:inline-block;
-padding:8px 22px;
-border-radius:25px;
-border:1px solid var(--cyan);
-color:var(--cyan-soft);
+/* SECTIONS */
+section {
+  padding: 100px 8%;
+  position: relative;
+  z-index: 1;
 }
 
-/* FEATURES */
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
-gap:30px;
-padding:60px 0;
+section h3 {
+  text-align: center;
+  font-size: 44px;
+  color: var(--cyan);
+  margin-bottom: 60px;
 }
 
-.card{
-background:var(--card);
-border-radius:26px;
-padding:30px;
-border:1px solid rgba(0,207,209,.25);
-backdrop-filter:blur(12px);
-animation:slideUp .8s ease;
-transition:.3s;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap: 30px;
 }
 
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 25px 45px rgba(0,207,209,.2);
-border-color:var(--cyan);
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(16px);
+  transition: 0.35s;
+  opacity: 0;
+  transform: translateY(35px);
 }
 
-.card h2{
-color:var(--cyan-soft);
-margin-bottom:18px;
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.card ul{
-list-style:none;
-display:grid;
-gap:8px;
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 60px rgba(0,255,255,0.35);
 }
 
-.card li{
-font-size:14px;
-color:var(--text-soft);
+.card h4 {
+  color: var(--cyan);
+  font-size: 26px;
+  margin-bottom: 16px;
 }
 
-.card li::before{
-content:"✓ ";
-color:var(--cyan);
-font-weight:800;
+.card ul {
+  list-style: none;
 }
 
-/* CTA */
-.cta{
-text-align:center;
-padding:80px 0;
-border-top:1px solid rgba(0,207,209,.2);
+.card li {
+  padding: 8px 0;
+  padding-left: 22px;
+  position: relative;
+  font-size: 16px;
 }
 
-.cta a{
-display:inline-block;
-margin-top:25px;
-padding:16px 60px;
-border-radius:50px;
-background:linear-gradient(135deg,var(--cyan),#5865F2);
-color:#fff;
-font-weight:900;
-text-decoration:none;
-transition:.25s;
-}
-
-.cta a:hover{
-transform:translateY(-3px);
-box-shadow:0 25px 50px var(--cyan-glow);
+.card li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
 }
 
 /* FOOTER */
-footer{
-text-align:center;
-padding:30px 0;
-font-size:13px;
-color:#5faeb0;
+footer {
+  padding: 50px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.5;
 }
 
 /* ANIMATIONS */
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.85}}
+@keyframes fadeUp {
+  from {opacity:0;transform:translateY(20px)}
+  to {opacity:1;transform:translateY(0)}
+}
+@keyframes fadeDown {
+  from {opacity:0;transform:translateY(-20px)}
+  to {opacity:1;transform:translateY(0)}
+}
 </style>
 </head>
 
 <body>
 
-<div class="bg-logo">HELIX</div>
-
-<div class="container">
+<div class="bg-logo">H</div>
 
 <nav>
-<div class="logo">HELIX</div>
-<div class="nav-links">
-<a href="#">HOME</a>
-<a href="#">ROBLOX</a>
-<a href="#">FAQ</a>
-<a class="discord-btn" href="https://discord.gg/pSyxuddN77" target="_blank">DISCORD</a>
-</div>
+  <h1>HELIX</h1>
+  <div>
+    <a href="#features">Features</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+  </div>
 </nav>
 
-<section class="header">
-<h1>HELIX EXTERNAL</h1>
-<p>Advanced Roblox External — Precision. Control. Undetected.</p>
-<div class="status">⚡ FULLY WORKING</div>
-</section>
+<header>
+  <h2>HELIX EXTERNAL</h2>
+  <p>Precision. Control. Undetected.</p>
+  <button>Get Started</button>
+</header>
 
-<section class="features">
+<section id="features">
+<h3>Core Features</h3>
+<div class="grid">
 
 <div class="card">
-<h2>🎯 Aimbot</h2>
+<h4>Aimbot</h4>
 <ul>
-<li>Enable / Disable</li>
 <li>Silent Aim</li>
 <li>Triggerbot + Delay</li>
-<li>Custom FOV (Circle, Fill, Radius, Color)</li>
-<li>Smoothing & Prediction</li>
-<li>Target Selection (Head / Chest / Torso)</li>
-<li>Dead & Visible Check</li>
-<li>Randomized Hitbox</li>
+<li>Prediction</li>
 <li>Sticky Aim</li>
-<li>Target Indicator</li>
+<li>Randomized Hitbox</li>
+<li>Target Selection</li>
+<li>FOV Circle (Radius / Fill / Color)</li>
+<li>Smoothing</li>
+<li>Visibility & Dead Check</li>
 </ul>
 </div>
 
 <div class="card">
-<h2>👁️ ESP</h2>
+<h4>ESP</h4>
 <ul>
-<li>Box ESP (2D / Corner)</li>
+<li>2D Box / Corner Box</li>
 <li>Box Fill</li>
 <li>Name & Distance</li>
 <li>Health Bar & Text</li>
@@ -271,27 +247,25 @@ color:#5faeb0;
 <li>Head Circle</li>
 <li>View Cone</li>
 <li>Team Check</li>
-<li>Max Distance Control</li>
-<li>Full Color Customization</li>
 </ul>
 </div>
 
 <div class="card">
-<h2>🎨 Visuals</h2>
+<h4>Visuals</h4>
 <ul>
 <li>Item ESP</li>
-<li>Fullbright</li>
-<li>Remove Sky</li>
-<li>Custom Skybox</li>
 <li>Mini Radar</li>
+<li>Fullbright</li>
+<li>Custom Skybox</li>
+<li>Remove Sky</li>
 </ul>
 </div>
 
 <div class="card">
-<h2>🏃 Movement</h2>
+<h4>Movement</h4>
 <ul>
-<li>Speed Hack (WalkSpeed / CFrame)</li>
-<li>Fly (Speed / CFrame / Position)</li>
+<li>Speed Hack</li>
+<li>Fly</li>
 <li>Noclip</li>
 <li>Infinite Jump</li>
 <li>Jump Power</li>
@@ -300,93 +274,64 @@ color:#5faeb0;
 </div>
 
 <div class="card">
-<h2>⚙️ Settings</h2>
+<h4>Utilities</h4>
 <ul>
 <li>Anti-AFK</li>
 <li>Chat Logger</li>
 <li>Chat Spammer</li>
 <li>Custom Crosshair</li>
 <li>Hit Markers</li>
-<li>Theme Selection (8 Themes)</li>
-<li>Snow Animation</li>
 <li>FPS Counter</li>
-<li>Player Count Display</li>
-<li>Menu Keybind</li>
+<li>Theme Selector</li>
+<li>Snow Animation</li>
 </ul>
 </div>
 
-<div class="card">
-<h2>👥 Players</h2>
-<ul>
-<li>Player List</li>
-<li>Health & Distance Display</li>
-<li>Mark Friend / Enemy</li>
-<li>Team Detection</li>
-<li>Teleport To Player</li>
-<li>Copy Username</li>
-</ul>
 </div>
+</section>
 
+<section id="games">
+<h3>Game Specific Support</h3>
+<div class="grid">
 <div class="card">
-<h2>ℹ️ Info</h2>
+<h4>BloxStrike</h4>
 <ul>
-<li>Game ID / Place ID</li>
-<li>Ping</li>
-<li>Username & User ID</li>
-<li>Health / WalkSpeed / JumpPower</li>
-<li>Player Count</li>
-<li>Team Info (Supported Games)</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>🧠 Game‑Specific</h2>
-<ul>
-<li>Project Delta Crate ESP (15 Types)</li>
-<li>Item Search</li>
-<li>Exit ESP</li>
-<li>AI ESP (Box, Skeleton, Name, Distance, Health, Tracers)</li>
-<li>FOV Inventory</li>
 <li>CT / T Team Detection</li>
 <li>Team-Based ESP Filtering</li>
-<li>Team Player Count</li>
 </ul>
 </div>
-
-<div class="card">
-<h2>🧭 Explorer</h2>
-<ul>
-<li>Instance Tree View</li>
-<li>Max Depth Control</li>
-<li>Instance Details (Name, Class, Address)</li>
-<li>Parent / Children View</li>
-<li>Click-to-Navigate</li>
-</ul>
 </div>
+</section>
 
+<section id="about">
+<h3>About Helix</h3>
+<div class="grid">
 <div class="card">
-<h2>🧠 Core Systems</h2>
+<h4>Why Helix?</h4>
 <ul>
 <li>External (No Injection)</li>
 <li>Stream Proof</li>
-<li>Undetected</li>
 <li>High Performance</li>
 <li>Stable on All FPS Caps</li>
+<li>Clean UI & UX</li>
 </ul>
 </div>
-
-</section>
-
-<section class="cta">
-<h2>READY TO DOMINATE?</h2>
-<p>Free Roblox externals — no payments, ever.</p>
-<a href="https://discord.gg/pSyxuddN77" target="_blank">JOIN DISCORD</a>
+</div>
 </section>
 
 <footer>
-© 2024 Helix External — Roblox externals only
+© Helix External — Precision. Control. Undetected.
 </footer>
 
-</div>
+<script>
+const cards = document.querySelectorAll(".card");
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("show");
+  });
+},{threshold:0.2});
+cards.forEach(c=>observer.observe(c));
+</script>
+
 </body>
 </html>
